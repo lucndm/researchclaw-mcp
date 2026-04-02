@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Runs data (persisted via Docker volume)
+runs/
+
+# Environment
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp

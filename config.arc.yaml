@@ -1,0 +1,4 @@
+model: gpt-4o-mini
+output_dir: /workspace/runs
+auto_approve: true
+cost_limit: 5.00

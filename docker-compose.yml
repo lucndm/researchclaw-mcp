@@ -1,0 +1,18 @@
+services:
+  researchclaw-mcp:
+    build: .
+    container_name: researchclaw-mcp
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./runs:/workspace/runs
+      - ~/.ssh:/root/.ssh:ro
+      - ./config.arc.yaml:/workspace/config.arc.yaml:ro
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OUTPUT_REPO_URL=${OUTPUT_REPO_URL}
+      - RUNS_DIR=/workspace/runs
+      - OUTPUT_REPO=/workspace/output-repo
+      - MAX_CONCURRENT_RUNS=${MAX_CONCURRENT_RUNS:-1}
+    restart: unless-stopped
