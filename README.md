@@ -103,6 +103,30 @@ curl http://localhost:8000/sse
 | `~/.ssh` | `/root/.ssh:ro` | Git push SSH key |
 | `./config.arc.yaml` | `/workspace/config.arc.yaml:ro` | ResearchClaw config |
 
+## Why This Wrapper Exists
+
+AutoResearchClaw upstream has two modules that sound relevant but neither provides a working MCP server:
+
+### `researchclaw/server/` — Web Dashboard (NOT MCP)
+
+FastAPI app (v0.5.0) with REST endpoints (`/api/pipeline/start`, `/api/runs`) and WebSocket for a web UI. This is a **dashboard**, not an MCP server.
+
+### `researchclaw/mcp/` — Stubs Only
+
+As of upstream main (checked 2026-04-03), the MCP module is incomplete:
+
+| Component | Status |
+|-----------|--------|
+| `tools.py` | Schema definitions only — no handler logic |
+| `server.py` | All 6 tool handlers are stubs (`return "mcp-stub-..."`, `"Literature search stub"`, etc.) |
+| `transport.py` | `StdioTransport` works, `SSETransport` raises `NotImplementedError` |
+
+Missing from native MCP module: `list_runs`, `cancel_run`, `callback_url`, git commit+push, Docker setup, concurrency control, run isolation.
+
+### Decision
+
+Rather than forking and completing the stubs, this repo wraps the proven CLI (`researchclaw run`) via subprocess. **If upstream completes its MCP module in the future, this wrapper should be replaced.**
+
 ## Architecture
 
 ```
