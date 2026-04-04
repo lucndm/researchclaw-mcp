@@ -25,6 +25,6 @@ RUN chmod +x /entrypoint.sh
 
 EXPOSE 8000
 
-LABEL io.docker.server.metadata="{\"name\":\"researchclaw\",\"description\":\"ResearchClaw MCP Server — autonomous research pipeline for generating academic papers with verified references\",\"remote\":{\"transport_type\":\"sse\",\"url\":\"http://localhost:8000/sse\"},\"env\":[{\"name\":\"OPENAI_API_KEY\",\"required\":true},{\"name\":\"ANTHROPIC_API_KEY\",\"required\":false},{\"name\":\"OUTPUT_REPO_URL\",\"required\":false}],\"tools\":[\"run_pipeline\",\"get_pipeline_status\",\"get_paper\",\"get_experiment_results\",\"search_literature\",\"list_runs\",\"cancel_run\"]}"
+LABEL io.docker.server.metadata="{\"name\":\"researchclaw\",\"description\":\"ResearchClaw MCP Server — autonomous research pipeline for generating academic papers with verified references\",\"remote\":{\"transport_type\":\"sse\",\"url\":\"http://localhost:8000/sse\"},\"env\":[{\"name\":\"OPENAI_API_KEY\",\"required\":true},{\"name\":\"ANTHROPIC_API_KEY\",\"required\":false},{\"name\":\"OUTPUT_REPO_URL\",\"required\":false}]}"
 
 ENTRYPOINT ["/entrypoint.sh"]
